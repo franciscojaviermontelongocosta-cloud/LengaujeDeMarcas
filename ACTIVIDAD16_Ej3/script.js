@@ -117,7 +117,7 @@ function populateUI() {
     updateSelectedCount();
 }
 
-function guardarAsientos() {
+function guardarAsiento() {
     let indices = [];
     for (let i = 0; i < seats.length; i++) {
         if (seats[i].classList.contains('selected')) {
