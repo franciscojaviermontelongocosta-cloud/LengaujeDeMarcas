@@ -18,11 +18,9 @@ function mostrarExito(input) {
     padre.className = 'form-control success';
 }
 
-// 3. Cuando el usuario hace clic en el botón de enviar
-form.addEventListener('submit', function(event) {
+form.addEventListener('submit', function (event) {
     event.preventDefault();
 
-    // VALIDACIÓN DE NOMBRE
     if (username.value.trim() === '') {
         mostrarError(username, 'El nombre es obligatorio');
     } else if (username.value.length < 3) {
@@ -31,17 +29,14 @@ form.addEventListener('submit', function(event) {
         mostrarExito(username);
     }
 
-    // VALIDACIÓN DE EMAIL
-    const expresionEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     if (email.value.trim() === '') {
         mostrarError(email, 'El email es obligatorio');
-    } else if (!expresionEmail.test(email.value)) {
-        mostrarError(email, 'El email no es válido');
+    } else if (!email.value.includes('@') || !email.value.includes('.')) {
+        mostrarError(email, 'Email inválido (ej: user@dominio.com)');
     } else {
         mostrarExito(email);
     }
 
-    // VALIDACIÓN DE CONTRASEÑAS
     if (password.value === '') {
         mostrarError(password, 'La contraseña es obligatoria');
     } else if (password.value.length < 6) {
@@ -58,7 +53,6 @@ form.addEventListener('submit', function(event) {
         mostrarExito(confirmpassword);
     }
 
-    // VALIDACIÓN DE EDAD
     const numeroEdad = Number(edad.value);
     if (edad.value === '') {
         mostrarError(edad, 'Pon tu edad');
@@ -68,12 +62,10 @@ form.addEventListener('submit', function(event) {
         mostrarExito(edad);
     }
 
-    // VALIDACIÓN DE URL
-    const expresionUrl = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i;
     if (url.value === '') {
         mostrarError(url, 'La URL es obligatoria');
-    } else if (!expresionUrl.test(url.value)) {
-        mostrarError(url, 'Formato incorrecto (ej: http://google.com)');
+    } else if (!url.value.includes('http') || !url.value.includes('.')) {
+        mostrarError(url, 'Debe empezar con http y tener punto (.)');
     } else {
         mostrarExito(url);
     }
